@@ -1,13 +1,14 @@
 {
     "pages": [
-        "pages/index/index"
+        "pages/index/index",
+        "pages/login/login"
     ],
     "window": {
-        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarBackgroundColor": "#36ab60",
         "navigationBarTitleText": "嘻耍耍",
-        "navigationBarTextStyle": "black",
-        "backgroundTextStyle": "black",
-        "enablePullDownRefresh": true
+        "navigationBarTextStyle": "white",
+        "backgroundTextStyle": "white",
+        "enablePullDownRefresh": false
     },
     "networkTimeout": {
         "request": 30000,
