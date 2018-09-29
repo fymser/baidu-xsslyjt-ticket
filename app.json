@@ -7,8 +7,8 @@
         "order_list\\order_list"
     ],
     "window": {
-        "navigationBarBackgroundColor": "#36ab60",
-        "navigationBarTitleText": "嘻耍耍",
+        "navigationBarBackgroundColor": "#3ac939",
+        "navigationBarTitleText": "嘻耍耍订门票官网",
         "navigationBarTextStyle": "white",
         "backgroundTextStyle": "white",
         "enablePullDownRefresh": false

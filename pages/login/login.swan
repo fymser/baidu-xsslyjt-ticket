@@ -1,3 +1,4 @@
-<view class="container">
-    <!--to do-->
+<view class="power">
+    <image src="/images/power.png" />
+    <view class="setPover" bind:tap="authorize">授权登录</view>
 </view>
