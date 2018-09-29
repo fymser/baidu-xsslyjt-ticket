@@ -6,8 +6,35 @@
 	</block>
 </swiper>
 <view class="shearch">
-    <view>重庆</view>
-    <view>
-        <input  maxlength="20" placeholder="最大输入长度20" />
-    </view>
+	<view class="city">{{city}}</view>
+	<view class="input">
+		<input maxlength="20" bindinput="search" placeholder="请输入景区" />
+		<view class="searchBtn" bindtap="doSearch">搜索</view>
+	</view>
 </view>
+<view>
+	<view class="list"  s-for="{{goods}}">
+		<image class="smallImg" src="{{item.logo}}"
+		 mode="aspectFill" />
+		<view class="content">
+			<view class="name">
+				{{item.name}}
+			</view>
+			<view class="child">
+				<view class="addr">
+					{{item.location}}
+				</view>
+				<view class="price">
+					￥{{item.minPrice}}<text>起</text>
+				</view>
+			</view>
+			<view class="km">约{{item.distance}}km</view>
+		</view>
+	</view>
+</view>
+<!-- <view class="getCity">
+	<view class="getCityList">
+		<view>重庆</view>
+		<image src="../../images/right.png">
+	</view>
+</view> -->

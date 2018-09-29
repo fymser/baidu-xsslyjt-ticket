@@ -1,21 +1,105 @@
 const app = getApp();
+let arr = [];
+let latitude;
+let longitude;
+let city;
+let page = 1;
+let val;
 Page({
     data: {
-        imgs: [
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538195885530&di=82068aebf896247075030b92f37a04e0&imgtype=0&src=http%3A%2F%2Fwww.fpwap.com%2FUploadFiles%2Farticle%2Fbagua%2F2014%2F12%2F03%2F1417582236688734.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1538790657&di=4451b4133c34a032913471b43b69b678&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.fpwap.com%2FUploadFiles%2Farticle%2Fbagua%2F2014%2F12%2F03%2F1417582235946756.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1538185858&di=f0ec2ad44b58f29f57a295a966885919&src=http://pic.feizl.com/upload/allimg/170615/0KZ64W5-0.jpg"
-        ]
+        imgs: [],
+        city: "",
+        goods: [],
     },
     onLoad: function () {
         //监听页面加载的生命周期函数
+        this.getAddr();
+    },
+    getAddr: function () {
+        let that = this;
+        swan.getLocation({
+            type: 'gcj02',
+            success: function (res) {
+                city = res.city;
+                latitude = res.latitude;
+                longitude = res.longitude;
+                
+                that.setData({
+                    city: res.city
+                })
+            },
+            fail: function (err) {
+                swan.showModal({
+                    title: '设置中未赋予百度App位置权限',
+                });
+
+            }
+        });
+
+    },
+    showBanner: function () {
+        let that = this;
+        swan.request({
+            url: 'https://api.xsslyjt.com/api/component_slide_show/59435', //开发者服务器接口地址
+            method: 'GET',
+            header: {
+                'content-type': 'application/json' // 默认值
+            },
+            success: function (res) {
+
+                for (let i = 0; i < res.data.data.length; i++) {
+                    arr.push(res.data.data[i].imageUrl)
+                }
+
+                that.setData({
+                    imgs: arr
+                })
+            },
+            fail: function (err) {
+                console.log('错误码：' + err.errCode);
+                console.log('错误信息：' + err.errMsg);
+            }
+        });
+    },
+    showList: function () {
+        let that = this;
+        swan.request({
+            url: 'https://api.xsslyjt.com/api/shop/get_shops_by_location', //开发者服务器接口地址
+            data: {
+                store_id: "1779",
+                location: city,
+                latitude: latitude,
+                longitude: longitude,
+                page: page
+            },
+            success: function (res) {
+                console.log(res.data);
+                that.setData({
+                    goods: res.data.data
+                })
+            },
+            fail: function (err) {
+                console.log('错误码：' + err.errCode);
+                console.log('错误信息：' + err.errMsg);
+            }
+        });
+
+    },
+    search:function(e){
+     
+        val = e.detail.value;
+    },
+    doSearch: function () {
+        console.info(val)
     },
     onReady: function () {
         // 监听页面初次渲染完成的生命周期函数
     },
     onShow: function () {
         // 监听页面显示的生命周期函数
-        app.checkLogin(this);
+        // app.checkLogin(this);
+        this.showBanner();
+        this.showList();
     },
     onHide: function () {
         // 监听页面隐藏的生命周期函数

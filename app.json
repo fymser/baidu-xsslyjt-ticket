@@ -1,10 +1,10 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/shop/shop",
         "pages/order_list/order_list",
         "pages/profile/profile",
-        "pages/login/login",
-        "order_list\\order_list"
+        "pages/login/login"
     ],
     "window": {
         "navigationBarBackgroundColor": "#3ac939",
