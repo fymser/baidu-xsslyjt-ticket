@@ -1,3 +1,13 @@
-<view class="container">
-    <!--to do-->
+<swiper indicator-dots="true" autoplay="true" interval="3000" duration="500">
+	<block s-for="imgUrl in imgs">
+		<swiper-item>
+			<image src="{{imgUrl}}" class="slide-image" mode="aspectFill" width="100%" />
+		</swiper-item>
+	</block>
+</swiper>
+<view class="shearch">
+    <view>重庆</view>
+    <view>
+        <input  maxlength="20" placeholder="最大输入长度20" />
+    </view>
 </view>

@@ -1,0 +1,7 @@
+.slide-image{
+    width:100%;
+}
+.shearch{
+    display: flex;
+    justify-content: space-between;
+}

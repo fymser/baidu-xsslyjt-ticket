@@ -1,7 +1,10 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/login/login"
+        "pages/order_list/order_list",
+        "pages/profile/profile",
+        "pages/login/login",
+        "order_list\\order_list"
     ],
     "window": {
         "navigationBarBackgroundColor": "#36ab60",
