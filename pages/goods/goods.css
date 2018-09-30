@@ -1,0 +1,74 @@
+.slide-image{
+    width:100%;
+}
+.shearch{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.head{
+    display: flex;
+    justify-content: space-between;
+}
+.price{
+    font-size: 26px;
+    color:#f00;
+    font-weight: normal;
+}
+.noPrice{
+    text-decoration: line-through;
+    font-size: 18px;
+    color:#999;
+    font-weight: normal;
+}
+.name{
+     overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient: vertical;
+   margin:5px;
+}
+
+.msg{
+    padding: 10px;
+}
+.footer{
+    width:100%;
+    position: fixed;
+    bottom: 0;
+    box-sizing: border-box;
+    justify-content: space-between;
+    background: #fff;
+    z-index: 2;
+    display: flex;
+
+}
+.call{
+    width:100px;
+    text-align: center;
+    margin: 5px 0;
+}
+.call image{
+    width:20px;
+    height:20px;
+}
+.footerList{
+    display: flex;
+}
+.toBuy{
+    background: #3385ff;
+    color:#fff;
+    width:200px;
+    height:55px;
+    line-height: 55px;
+    text-align: center;
+}
+.shear{
+    width:200px;
+    text-align: center;
+    height:80px;
+    line-height: 80px;
+}

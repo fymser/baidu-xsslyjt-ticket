@@ -1,0 +1,32 @@
+<view class="top">
+    <view class="topList {{isClick=='1'?'active':''}}" data-id="1" onTap="tapName">全部</view>
+    <view class="topList {{isClick=='2'?'active':''}}" data-id="2" onTap="tapName">待付款</view>
+    <view class="topList {{isClick=='3'?'active':''}}" data-id="3" onTap="tapName">已完成</view>
+    <view class="topList {{isClick=='4'?'active':''}}" data-id="4" onTap="tapName">退款</view>
+</view>
+<view class="content">
+    <view class="orderList" a:for="{{data}}" key="{{item}}">
+        <view class="contentTitle">    订单编号：{{item.orderNumber}}  </view>
+        <view class="contentAbout">
+            <image src="{{item.logo.filepath}}" />
+            <view class="contentAll">
+                <view class="contentName">{{item.item.name}}</view>
+                <view class="contentTow">
+                    <view class="contentPrice">￥{{item.price}}</view>
+                    <view>x1</view>
+                </view>
+            </view>
+        </view>
+        <view class="orderState"  a:if="{{item.orderStatus==0}}">待付款</view>
+        <view class="orderState" a:if="{{item.orderStatus==1}}">已完成</view>
+        <view class="allPrice">合计：￥{{item.price}}</view>
+        <view class="orderPay" a:if="{{item.orderStatus==0}}">
+            <view class="orderBlock" onTap="contact">联系客服</view>
+            <view class="orderBlock" onTap="toPay" data-id="{{item.orderNumber}}">去付款</view>
+        </view>
+        
+    </view>
+</view>
+<view class="noMsg" a:if="{{nodata}}">
+    <image src="/images/personal/nodata.png" />
+</view>

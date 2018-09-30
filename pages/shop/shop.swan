@@ -1,0 +1,47 @@
+<!-- <rich-text nodes="{{nodes}}">
+
+	</rich-text> -->
+<swiper indicator-dots="true" autoplay="true" interval="3000" duration="500">
+	<block >
+		<swiper-item>
+			<image src="{{img}}" class="slide-image" mode="aspectFill" width="100%" />
+		</swiper-item>
+	</block>
+</swiper>
+<view>
+	<view class="shopList">
+		<view class="shopName">{{name}}</view>
+	</view>
+	<view class="shopList" bindtap="go">
+		<image class="leftImg" src="../../images/addr.png" mode="aspectFill"/>
+		<view class="shopName">{{location}}</view>
+		<image src="../../images/right.png" mode="aspectFill"/>
+	</view>
+	<view class="shopList" bindtap="call">
+		<image class="leftImg" src="../../images/phone.png" mode="aspectFill"/>
+		<view class="shopName">{{phone}}</view>
+		<image src="../../images/right.png" mode="aspectFill"/>
+	</view>
+	
+	
+</view>
+<view>
+	<view class="list"  s-for="{{goods}}">
+		<image class="smallImg" src="{{item.cover.filepath}}"
+		 mode="aspectFill" />
+		<view class="content">
+			<view class="name">
+				{{item.name}}
+			</view>
+			<view class="child">
+				<view class="addr">
+					{{item.description}}
+				</view>
+				
+			</view>
+			<view class="price">
+					￥{{item.itemStatus.price}}<text>元</text>
+				</view>
+		</view>
+	</view>
+</view>

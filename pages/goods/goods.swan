@@ -1,0 +1,38 @@
+<swiper indicator-dots="true" autoplay="true" interval="3000" duration="500">
+	<block s-for="imgUrl in imgs">
+		<swiper-item>
+			<image src="{{imgUrl}}" class="slide-image" mode="aspectFill" width="100%" />
+		</swiper-item>
+	</block>
+</swiper>
+<view class="head">
+	<view class="msg">
+		<view>
+			<text class="price">￥9999</text>
+			<text class="noPrice">￥8888</text>
+		</view>
+		<view class="name">
+			这些没洱海乖哦阿萨德阿斯顿全文阿萨德开开开了阿萨德看你我期望和阿斯蒂芬你个 发阿斯蒂芬as的阿萨德请问ed 前雾灯啊是的as的阿萨德啊是的请问饿
+		</view>
+	</view>
+	<view class="shear">
+		分享
+	</view>
+</view>
+<view class="footer">
+
+	<view class="footerList">
+
+		<view class="call">
+			<view><image src="../../images/goods/chat.png" mode="aspectFill" /></view>
+			<view>客服</view>
+		</view>
+		<view class="call">
+			<view><image src="../../images/goods/chat.png" mode="aspectFill" /></view>
+			<view>收藏</view>
+		</view>
+	</view>
+	<view class="toBuy">
+		立即购买
+	</view>
+</view>

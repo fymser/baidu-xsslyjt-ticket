@@ -1,7 +1,3 @@
-page{
-    margin: 0;
-    padding: 0;
-}
 .slide-image{
     width:100%;
 }
@@ -89,39 +85,32 @@ page{
     color:#f00;
     height:40px;
     line-height: 40px;
+    justify-content: flex-end;
 }
 .child{
     display: flex;
     justify-content: space-between;
 }
-.getCity{
-    position: fixed;
-    height: 100%;
-    width:100%;
-    background: #fff;
-    z-index: 2;
-    top:0;
-    overflow-y: auto;
-}
-.getCityList{
-    padding: 10px;
+.shopList{
+    padding: 10px 10px;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
 }
-.getCityList image{
+.shopList image{
     width:10px;
-    height:20px;
+    height:16px;
 }
-.noCity{
-    display: none;
+.shopName{
+    width:90%;
+     overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp:1;
+    -webkit-box-orient: vertical;
 }
-.nodata{
-    width:750rpx;
-    height:90rpx;
-    margin: 30rpx 0;
-}
-.loading{
-    width:750rpx;
-    height:90rpx;
+.shopList .leftImg{
+    width:16px;
+    height:16px;
+    margin-right:10px; 
 }

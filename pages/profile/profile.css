@@ -1,0 +1,123 @@
+ .headPersonal{
+  position: relative;
+  width:750rpx;
+    height:780rpx;
+}
+.user_img{
+    position: absolute;
+  width:80px;
+  height:80px;
+  left: 50%;
+  margin-left:-40px;
+  top:40px;
+  overflow: hidden;
+  border-radius: 41px;
+
+}
+.img{
+  height:620rpx;
+  width:750rpx;
+  position: absolute;
+
+}
+.orderCount{
+    padding: 0 10px;
+}
+.orders{
+  position: relative;
+  background: #fff;
+  
+  width:100%;
+  top:240px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px 1px #ccc;
+}
+.menu{
+ 
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
+  height:80px; 
+  margin: 0 auto;
+
+}
+
+.menu-list{
+  width:25%;
+  text-align: center
+}
+.menu-list image{
+  width:45px;
+  height:45px;
+  margin-bottom:10px; 
+}
+.user_name{
+  position: absolute;
+  margin: 0 auto;
+  text-align: center;
+  color:#fff;
+  width:100%;
+  top:130px;
+  font-size: 20px;
+}
+.noPay{
+  background-image: url(../../images/personal/nopay.png)
+}
+.pay{
+  background-image: url(../../images/personal/pay.png)
+}
+.msg{
+  background-image: url(../../images/personal/message.png)
+}
+.back{
+  background-image: url(../../images/personal/end.png)
+}
+.menuImg{
+   width:25px;
+  height:25px;
+  margin: 5px auto;
+  background-size:cover;
+  background-repeat:no-repeat;  
+}
+.menuImg2{
+  width:30px;
+  height:30px;
+  margin: 5px auto;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+.menu-name{
+  color:#000;
+margin-top:10px; 
+}
+.orderAll{
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 10px 12px 10px;
+  color:#444;
+  border-bottom: 1px solid #eee;
+}
+.orderMenu{
+    width:100%;
+    position: absolute;
+    top:160px;
+    display: flex;
+    justify-content: space-between;
+}
+.orderMenuList{
+    width:33%;
+    text-align: center;
+}
+.orderSC{
+    background-image: url(../../images/personal/sc.png)
+}
+.orderZJ{
+    background-image: url(../../images/personal/zj.png)
+}
+.orderYHQ{
+    background-image: url(../../images/personal/yhq.png)
+}
+.orderKey{
+    margin-top:10px;
+}

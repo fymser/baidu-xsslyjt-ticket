@@ -1,0 +1,82 @@
+.top{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  position:fixed;
+  background:#fff;
+  z-index: 9;
+ top:0;
+}
+.content{
+  margin-top:38px;
+}
+.topList{
+  width:20%;
+  padding: 10px 0;
+  text-align: center;
+}
+.active{
+  border-bottom: 1px solid #3385ff;
+  color:  #3385ff;
+}
+.contentTitle{
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+.contentAbout image{
+  width:80px;
+  height:80px;
+  margin-right: 10px;
+  
+}
+.contentAbout{
+  margin: 10px 10px 0 10px;
+  display: flex;
+}
+.contentAll{
+   width:270px;
+}
+.contentName{
+  width:270px;
+  height:48px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient: vertical;
+
+}
+.contentTow{
+  display: flex;
+    color:#999;
+    justify-content: space-between;
+    padding:10px;
+    font-size: 18px;
+}
+.allPrice{
+  text-align: right;
+  padding-right: 10px;
+  font-size: 12px;
+}
+.orderList{
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.orderState{
+  color:#999;
+  text-align: right;
+  
+  padding-right: 10px;
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+.orderPay{
+  display: flex;
+  justify-content: flex-end;
+}
+.orderBlock{
+  border:1px solid #000;
+  color:#999;
+  margin:5px;
+  font-size: 12px;
+  padding: 3px 10px;
+}

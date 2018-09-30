@@ -10,9 +10,6 @@ Page({
         imgs: [],
         city: "",
         goods: [],
-        cityList:[],
-        showCity:"2",
-        noMore:1,
     },
     onLoad: function () {
         //监听页面加载的生命周期函数
@@ -64,76 +61,7 @@ Page({
             }
         });
     },
-    setCity:function(e){
-        console.info(e)
-        city = e.currentTarget.dataset.city
-        this.setData({
-            city:e.currentTarget.dataset.city,
-            showCity:"2",
-        })
-        this.setData({
-             goods: [],
-        })
-        this.showList(1,city)
-    },
-    showList: function (_page,_city) {
-        let that = this;
-        swan.request({
-            url: 'https://api.xsslyjt.com/api/shop/get_shops_by_location', //开发者服务器接口地址
-            data: {
-                store_id: "1779",
-                location: _city,
-                latitude: latitude,
-                longitude: longitude,
-                page: _page
-            },
-            success: function (res) {
-                let obj = [];
-                obj = that.data.goods;
-                for(let i = 0 ;i<res.data.data.length;i++){
-                    obj.push(res.data.data[i]);
-                }
-                that.setData({
-                    goods: obj
-                })
-                if(res.data.data.length==0){
-                    that.setData({
-                        noMore:"2"
-                    })
-                }
-            },
-            fail: function (err) {
-                console.log('错误码：' + err.errCode);
-                console.log('错误信息：' + err.errMsg);
-            }
-        });
-
-    },
-    search:function(e){
-    //  城市:
-        val = e.detail.value;
-    },
-    
-    doCity: function () {
-     
-        let that = this;
-        swan.request({
-            url: 'https://api.xsslyjt.com/api/transportation/area/cities', //开发者服务器接口地址
-            success: function (res) {
-                let nimei = res.data.data
-                console.info(nimei);
-                that.setData({
-                    cityList:res.data.data,
-                    showCity:1,
-                })
-            },
-            fail: function (err) {
-                console.log('错误码：' + err.errCode);
-                console.log('错误信息：' + err.errMsg);
-            }
-        });
-    },
-    doSearch: function () {
+    showList: function () {
         let that = this;
         swan.request({
             url: 'https://api.xsslyjt.com/api/shop/get_shops_by_location', //开发者服务器接口地址
@@ -142,11 +70,10 @@ Page({
                 location: city,
                 latitude: latitude,
                 longitude: longitude,
-                page: page,
-                name:val,
+                page: page
             },
             success: function (res) {
-                
+                console.log(res.data);
                 that.setData({
                     goods: res.data.data
                 })
@@ -156,6 +83,14 @@ Page({
                 console.log('错误信息：' + err.errMsg);
             }
         });
+
+    },
+    search:function(e){
+     
+        val = e.detail.value;
+    },
+    doSearch: function () {
+        console.info(val)
     },
     onReady: function () {
         // 监听页面初次渲染完成的生命周期函数
@@ -164,7 +99,7 @@ Page({
         // 监听页面显示的生命周期函数
         // app.checkLogin(this);
         this.showBanner();
-        this.showList(1,city);
+        this.showList();
     },
     onHide: function () {
         // 监听页面隐藏的生命周期函数
@@ -177,11 +112,6 @@ Page({
     },
     onReachBottom: function () {
         // 页面上拉触底事件的处理函数
-     
-       page++;
-       this.showList(page,city)
-      
-
     },
     onShareAppMessage: function () {
         // 用户点击右上角转发
