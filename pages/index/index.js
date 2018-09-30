@@ -9,7 +9,7 @@ let isSearch=false;
 Page({
     data: {
         imgs: [],
-        city: "重庆",
+        city: "重庆市",
         goods: [],
         cityList: [],
         showCity: "2",
@@ -40,7 +40,7 @@ Page({
                     }
                 });
             },
-            complete() {
+            fail() {
                 that.showList(1, that.data.city)
             }
         });
