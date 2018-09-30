@@ -19,7 +19,7 @@
 		分享
 	</view>
 </view>
-<view class="footer">
+<!-- <view class="footer">
 
 	<view class="footerList">
 
@@ -35,4 +35,4 @@
 	<view class="toBuy">
 		立即购买
 	</view>
-</view>
+</view> -->
