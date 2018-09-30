@@ -2,10 +2,10 @@ const app = getApp();
 let arr = [];
 let latitude = '29.607857';
 let longitude = '106.503971';
-let city;
+let city = '重庆市';
 let page = 1;
 let val;
-let isSearch=false;
+let isSearch = false;
 Page({
     data: {
         imgs: [],
@@ -146,8 +146,8 @@ Page({
             }
         });
     },
-    doSearch: function (page,vle) {
-        isSearch=true;
+    doSearch: function (page, vle) {
+        isSearch = true;
         let that = this;
         page = 1
         swan.request({
@@ -200,10 +200,10 @@ Page({
         // 页面上拉触底事件的处理函数
 
         page++;
-     
-        if(isSearch){
-            this.doSearch(page,val)
-        }else{
+
+        if (isSearch) {
+            this.doSearch(page, val)
+        } else {
             this.showList(page, city)
         }
 
