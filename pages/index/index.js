@@ -5,6 +5,7 @@ let longitude = '106.503971';
 let city;
 let page = 1;
 let val;
+let isSearch=false;
 Page({
     data: {
         imgs: [],
@@ -145,7 +146,8 @@ Page({
             }
         });
     },
-    doSearch: function () {
+    doSearch: function (page,vle) {
+        isSearch=true;
         let that = this;
         page = 1
         swan.request({
@@ -156,15 +158,18 @@ Page({
                 latitude: latitude,
                 longitude: longitude,
                 page: page,
-                name: val,
+                name: vle,
             },
             success: function (res) {
-
+                let obj = [];
+                obj = that.data.goods;
+                for (let i = 0; i < res.data.data.length; i++) {
+                    obj.push(res.data.data[i]);
+                }
                 that.setData({
-                    goods: res.data.data,
+                    goods: obj
                 })
-
-                if (res.data.data.length < 10) {
+                if (res.data.data.length == 0) {
                     that.setData({
                         noMore: "3"
                     })
@@ -195,8 +200,12 @@ Page({
         // 页面上拉触底事件的处理函数
 
         page++;
-        this.showList(page, city)
-
+     
+        if(isSearch){
+            this.doSearch(page,val)
+        }else{
+            this.showList(page, city)
+        }
 
     },
     onShareAppMessage: function () {

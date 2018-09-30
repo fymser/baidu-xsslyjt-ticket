@@ -5,55 +5,55 @@ let longitude;
 let city;
 let page = 1;
 let val;
+let id;
 Page({
     data: {
         imgs: [],
         city: "",
         goods: [],
+        nodes: [],
     },
     onLoad: function (e) {
         //监听页面加载的生命周期函数
         console.info(e)
-        this.getAddr();
+        id = e.id;
+        // this.getAddr();
     },
-    getAddr: function () {
-        let that = this;
-        swan.getLocation({
-            type: 'gcj02',
-            success: function (res) {
-                city = res.city;
-                latitude = res.latitude;
-                longitude = res.longitude;
-                
-                that.setData({
-                    city: res.city
-                })
-            },
-            fail: function (err) {
-                swan.showModal({
-                    title: '设置中未赋予百度App位置权限',
-                });
+    // getAddr: function () {
+    //     let that = this;
+    //     swan.getLocation({
+    //         type: 'gcj02',
+    //         success: function (res) {
+    //             city = res.city;
+    //             latitude = res.latitude;
+    //             longitude = res.longitude;
 
-            }
-        });
+    //             that.setData({
+    //                 city: res.city
+    //             })
+    //         },
+    //         fail: function (err) {
+    //             swan.showModal({
+    //                 title: '设置中未赋予百度App位置权限',
+    //             });
 
-    },
-    showBanner: function () {
+    //         }
+    //     });
+
+    // },
+    showGoods: function () {
         let that = this;
         swan.request({
-            url: 'https://api.xsslyjt.com/api/component_slide_show/59435', //开发者服务器接口地址
+            url: 'https://api.xsslyjt.com/api/item/' + id, //开发者服务器接口地址
             method: 'GET',
             header: {
                 'content-type': 'application/json' // 默认值
             },
             success: function (res) {
-
-                for (let i = 0; i < res.data.data.length; i++) {
-                    arr.push(res.data.data[i].imageUrl)
-                }
-
+                console.info(res)
                 that.setData({
-                    imgs: arr
+                    goods: res.data.data,
+                    nodes: res.data.data.introduce,
                 })
             },
             fail: function (err) {
@@ -62,32 +62,13 @@ Page({
             }
         });
     },
-    showList: function () {
-        let that = this;
-        swan.request({
-            url: 'https://api.xsslyjt.com/api/shop/get_shops_by_location', //开发者服务器接口地址
-            data: {
-                store_id: "1779",
-                location: city,
-                latitude: latitude,
-                longitude: longitude,
-                page: page
-            },
-            success: function (res) {
-                console.log(res.data);
-                that.setData({
-                    goods: res.data.data
-                })
-            },
-            fail: function (err) {
-                console.log('错误码：' + err.errCode);
-                console.log('错误信息：' + err.errMsg);
-            }
+    call: function () {
+        swan.makePhoneCall({
+            phoneNumber: '4001828278'
         });
-
     },
-    search:function(e){
-     
+    search: function (e) {
+
         val = e.detail.value;
     },
     doSearch: function () {
@@ -99,8 +80,7 @@ Page({
     onShow: function () {
         // 监听页面显示的生命周期函数
         // app.checkLogin(this);
-        this.showBanner();
-        this.showList();
+        this.showGoods();
     },
     onHide: function () {
         // 监听页面隐藏的生命周期函数
