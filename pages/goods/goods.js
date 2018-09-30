@@ -11,8 +11,9 @@ Page({
         city: "",
         goods: [],
     },
-    onLoad: function () {
+    onLoad: function (e) {
         //监听页面加载的生命周期函数
+        console.info(e)
         this.getAddr();
     },
     getAddr: function () {

@@ -94,7 +94,8 @@ Page({
                     obj.push(res.data.data[i]);
                 }
                 that.setData({
-                    goods: obj
+                    goods: obj,
+                    noMore:"1"
                 })
                 if(res.data.data.length==0){
                     that.setData({
@@ -115,7 +116,7 @@ Page({
     },
     
     doCity: function () {
-     
+        page = 1;
         let that = this;
         swan.request({
             url: 'https://api.xsslyjt.com/api/transportation/area/cities', //开发者服务器接口地址
@@ -125,6 +126,7 @@ Page({
                 that.setData({
                     cityList:res.data.data,
                     showCity:1,
+                    noMore:"1",
                 })
             },
             fail: function (err) {
@@ -135,6 +137,7 @@ Page({
     },
     doSearch: function () {
         let that = this;
+        page = 1
         swan.request({
             url: 'https://api.xsslyjt.com/api/shop/get_shops_by_location', //开发者服务器接口地址
             data: {
@@ -148,8 +151,14 @@ Page({
             success: function (res) {
                 
                 that.setData({
-                    goods: res.data.data
+                    goods: res.data.data,
+                    
                 })
+                if(res.data.data.length==0){
+                    that.setData({
+                        noMore:"2"
+                    })
+                }
             },
             fail: function (err) {
                 console.log('错误码：' + err.errCode);
