@@ -117,6 +117,10 @@ Page({
     search: function (e) {
         //  城市:
         val = e.detail.value;
+        page = 1
+        this.setData({
+            goods:[],
+        })
     },
     doCity: function () {
 
@@ -146,10 +150,12 @@ Page({
             }
         });
     },
-    doSearch: function (page, vle) {
+    doSearch: function () {
+        console.info(val)
         isSearch = true;
         let that = this;
-        page = 1
+        
+        console.info(page)
         swan.request({
             url: 'https://api.xsslyjt.com/api/shop/get_shops_by_location', //开发者服务器接口地址
             data: {
@@ -158,7 +164,7 @@ Page({
                 latitude: latitude,
                 longitude: longitude,
                 page: page,
-                name: vle,
+                name: val,
             },
             success: function (res) {
                 let obj = [];
@@ -167,13 +173,10 @@ Page({
                     obj.push(res.data.data[i]);
                 }
                 that.setData({
-                    goods: obj
+                    goods: obj,
+                    noMore: "3"
                 })
-                if (res.data.data.length == 0) {
-                    that.setData({
-                        noMore: "3"
-                    })
-                }
+                
             },
             fail: function (err) {
                 console.log('错误码：' + err.errCode);
@@ -202,7 +205,7 @@ Page({
         page++;
 
         if (isSearch) {
-            this.doSearch(page, val)
+            this.doSearch()
         } else {
             this.showList(page, city)
         }
