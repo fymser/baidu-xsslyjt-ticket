@@ -1,44 +1,48 @@
 const app = getApp();
 let arr = [];
-let latitude;
-let longitude;
+let latitude = '29.607857';
+let longitude = '106.503971';
 let city;
 let page = 1;
 let val;
 Page({
     data: {
         imgs: [],
-        city: "",
+        city: "重庆",
         goods: [],
-        cityList:[],
-        showCity:"2",
-        noMore:1,
+        cityList: [],
+        showCity: "2",
+        noMore: 1,
     },
     onLoad: function () {
         //监听页面加载的生命周期函数
+        this.showBanner();
         this.getAddr();
     },
     getAddr: function () {
         let that = this;
-        swan.getLocation({
-            type: 'gcj02',
-            success: function (res) {
-                city = res.city;
-                latitude = res.latitude;
-                longitude = res.longitude;
-                
-                that.setData({
-                    city: res.city
-                })
-            },
-            fail: function (err) {
-                swan.showModal({
-                    title: '设置中未赋予百度App位置权限',
+        swan.authorize({
+            scope: 'scope.userLocation',
+            success: function () {
+                swan.getLocation({
+                    type: 'gcj02',
+                    success: function (res) {
+                        city = res.city;
+                        latitude = res.latitude;
+                        longitude = res.longitude;
+                        that.setData({
+                            city: res.city
+                        })
+                    },
+                    complete() {
+                        that.showList(1, that.data.city)
+                    }
                 });
-
+            },
+            complete() {
+                that.showList(1, that.data.city)
             }
         });
-
     },
     showBanner: function () {
         let that = this;
@@ -64,24 +68,24 @@ Page({
             }
         });
     },
-    setCity:function(e){
+    setCity: function (e) {
         console.info(e)
         city = e.currentTarget.dataset.city
         this.setData({
-            city:e.currentTarget.dataset.city,
-            showCity:"2",
+            city: e.currentTarget.dataset.city,
+            showCity: "2",
         })
         this.setData({
-             goods: [],
+            goods: [],
         })
-        this.showList(1,city)
+        this.showList(1, city)
     },
-    showList: function (_page,_city) {
+    showList: function (_page, _city) {
         let that = this;
         swan.request({
             url: 'https://api.xsslyjt.com/api/shop/get_shops_by_location', //开发者服务器接口地址
             data: {
-                store_id: "1779",
+                store_id: app.getStoreId(),
                 location: _city,
                 latitude: latitude,
                 longitude: longitude,
@@ -90,16 +94,15 @@ Page({
             success: function (res) {
                 let obj = [];
                 obj = that.data.goods;
-                for(let i = 0 ;i<res.data.data.length;i++){
+                for (let i = 0; i < res.data.data.length; i++) {
                     obj.push(res.data.data[i]);
                 }
                 that.setData({
-                    goods: obj,
-                    noMore:"1"
+                    goods: obj
                 })
-                if(res.data.data.length==0){
+                if (res.data.data.length == 0) {
                     that.setData({
-                        noMore:"2"
+                        noMore: "2"
                     })
                 }
             },
@@ -110,11 +113,10 @@ Page({
         });
 
     },
-    search:function(e){
-    //  城市:
+    search: function (e) {
+        //  城市:
         val = e.detail.value;
     },
-    
     doCity: function () {
         page = 1;
         let that = this;
@@ -124,9 +126,9 @@ Page({
                 let nimei = res.data.data
                 console.info(nimei);
                 that.setData({
-                    cityList:res.data.data,
-                    showCity:1,
-                    noMore:"1",
+                    cityList: res.data.data,
+                    showCity: 1,
+                    noMore: "1",
                 })
             },
             fail: function (err) {
@@ -146,17 +148,16 @@ Page({
                 latitude: latitude,
                 longitude: longitude,
                 page: page,
-                name:val,
+                name: val,
             },
             success: function (res) {
-                
+
                 that.setData({
                     goods: res.data.data,
-                    
                 })
-                if(res.data.data.length==0){
+                if (res.data.data.length == 0) {
                     that.setData({
-                        noMore:"2"
+                        noMore: "2"
                     })
                 }
             },
@@ -171,9 +172,6 @@ Page({
     },
     onShow: function () {
         // 监听页面显示的生命周期函数
-        // app.checkLogin(this);
-        this.showBanner();
-        this.showList(1,city);
     },
     onHide: function () {
         // 监听页面隐藏的生命周期函数
@@ -186,10 +184,10 @@ Page({
     },
     onReachBottom: function () {
         // 页面上拉触底事件的处理函数
-     
-       page++;
-       this.showList(page,city)
-      
+
+        page++;
+        this.showList(page, city)
+
 
     },
     onShareAppMessage: function () {
