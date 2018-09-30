@@ -118,18 +118,26 @@ Page({
         val = e.detail.value;
     },
     doCity: function () {
+
         page = 1;
         let that = this;
+        that.setData({
+            showCity: 1,
+            showloade: 1,
+        })
         swan.request({
             url: 'https://api.xsslyjt.com/api/transportation/area/cities', //开发者服务器接口地址
             success: function (res) {
-                let nimei = res.data.data
-                console.info(nimei);
-                that.setData({
-                    cityList: res.data.data,
-                    showCity: 1,
-                    noMore: "1",
-                })
+
+                console.info(res)
+                if (res.statusCode == 200) {
+                    that.setData({
+                        cityList: res.data.data,
+                        showloade: 2,
+                        noMore: "1",
+                    })
+                }
+
             },
             fail: function (err) {
                 console.log('错误码：' + err.errCode);
@@ -155,9 +163,10 @@ Page({
                 that.setData({
                     goods: res.data.data,
                 })
-                if (res.data.data.length == 0) {
+
+                if (res.data.data.length < 10) {
                     that.setData({
-                        noMore: "2"
+                        noMore: "3"
                     })
                 }
             },

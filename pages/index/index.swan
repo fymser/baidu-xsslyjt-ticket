@@ -1,4 +1,3 @@
-
 <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500">
 	<block s-for="imgUrl in imgs">
 		<swiper-item>
@@ -14,9 +13,8 @@
 	</view>
 </view>
 <view>
-	<navigator url="/pages/shop/shop?id={{item.id}}" class="list"  s-for="{{goods}}">
-		<image class="smallImg" src="{{item.logo}}"
-		 mode="aspectFill" />
+	<navigator url="/pages/shop/shop?id={{item.id}}" class="list" s-for="{{goods}}">
+		<image class="smallImg" src="{{item.logo}}" mode="aspectFill" />
 		<view class="content">
 			<view class="name">
 				{{item.name}}
@@ -33,15 +31,21 @@
 		</view>
 	</navigator>
 </view>
-<view class="{{showCity=='1'?'getCity':'noCity'}}"  >
+<view class="{{showCity=='1'?'getCity':'noCity'}}">
 	<view class="getCityList" s-for="{{cityList}}" bindtap="setCity" data-city="{{cityList[index].name}}">
 		<view>{{cityList[index].name}}</view>
 		<image src="../../images/right.png">
 	</view>
+	<view s-if="{{showloade==1}}">
+		<image class="loading" src="../../images/loading.png" mode="aspectFill" />
+	</view>
 </view>
 <view s-if="{{noMore==1}}">
-	<image class="loading" src="../../images/loading.png"  mode="aspectFill" />
+	<image class="loading" src="../../images/loading.png" mode="aspectFill" />
 </view>
 <view s-if="{{noMore==2}}">
-	<image class="nodata" src="../../images/nodata.png"  mode="aspectFill" />
+	<image class="loading" src="../../images/noMore.png" mode="aspectFill" />
+</view>
+<view s-if="{{noMore==3}}">
+	<image class="loading" src="../../images/noMore.png" mode="aspectFill" />
 </view>
