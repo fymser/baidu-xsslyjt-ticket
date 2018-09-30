@@ -50,11 +50,8 @@ Page({
                 latitude = res.data.data.latitude
                 longitude = res.data.data.longitude
                 that.setData({
-                    img: res.data.data.logo,
-                    phone: res.data.data.telephone,
-                    profile: res.data.data.profile,
-                    name: res.data.data.name,
-                    location: res.data.data.location,
+                    obj:res.data.data
+                    
                 })
             },
             fail: function (err) {

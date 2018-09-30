@@ -4,22 +4,22 @@
 <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500">
 	<block>
 		<swiper-item>
-			<image src="{{img}}" class="slide-image" mode="aspectFill" width="100%" />
+			<image src="{{obj.logo}}" class="slide-image" mode="aspectFill" width="100%" />
 		</swiper-item>
 	</block>
 </swiper>
 <view>
 	<view class="shopList">
-		<view class="shopName">{{name}}</view>
+		<view class="shopName">{{obj.name}}</view>
 	</view>
 	<view class="shopList" bindtap="go">
 		<image class="leftImg" src="../../images/addr.png" mode="aspectFill" />
-		<view class="shopName">{{location}}</view>
+		<view class="shopName">{{obj.location}}</view>
 		<image src="../../images/right.png" mode="aspectFill" />
 	</view>
 	<view class="shopList" bindtap="call">
 		<image class="leftImg" src="../../images/phone.png" mode="aspectFill" />
-		<view class="shopName">{{phone}}</view>
+		<view class="shopName">{{obj.telephone}}</view>
 		<image src="../../images/right.png" mode="aspectFill" />
 	</view>
 
